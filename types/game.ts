@@ -62,6 +62,7 @@ export interface EnemyAction {
 export interface EnemyDefinition {
   id: string;
   name: string;
+  image?: string;
   hp: number;
   atk: number;
   def: number;

@@ -32,8 +32,8 @@ interface GameState {
   setGameResult: (result: 'victory' | 'defeat') => void;
   setPendingRewards: (rewards: Reward[]) => void;
 
-  // レベルアップ処理
-  addExp: (exp: number) => void;
+  // レベルアップ処理（敵を1体倒すごとに1レベル上昇）
+  levelUp: () => void;
 }
 
 export const useGameStore = create<GameState>((set, get) => ({
@@ -114,6 +114,8 @@ export const useGameStore = create<GameState>((set, get) => ({
         if (reward.traitId) {
           get().addTrait(reward.traitId);
         }
+        // 特性の場合もpendingRewardsをクリア
+        set({ pendingRewards: [] });
         return;
       case 'statHp':
         player.maxHp += reward.value ?? 0;
@@ -158,19 +160,14 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   setPendingRewards: (rewards) => set({ pendingRewards: rewards }),
 
-  addExp: (exp) => {
+  levelUp: () => {
     const state = get();
-    let player = { ...state.player };
-    player.exp += exp;
+    const player = { ...state.player };
 
-    // レベルアップチェック
-    while (player.exp >= player.lv * GAME_CONSTANTS.EXP_PER_LEVEL) {
-      player.exp -= player.lv * GAME_CONSTANTS.EXP_PER_LEVEL;
-      player.lv++;
-      player.maxHp += 5;
-      player.hp = Math.min(player.hp + 5, player.maxHp);
-      player.atk += 1;
-    }
+    // レベルアップ（敵を1体倒すごとに1レベル上昇）
+    // 最大HPは上がるが、現在HPは回復しない（報酬でHP回復を選ぶ意味を持たせる）
+    player.lv++;
+    player.maxHp += 5;
 
     set({ player });
   },
