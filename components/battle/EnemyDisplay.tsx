@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.card,
     borderRadius: BORDER_RADIUS.lg,
-    padding: SPACING.md,
+    padding: SPACING.sm,
     borderWidth: 1,
     borderColor: COLORS.cardBorder,
   },
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.sm,
-    marginBottom: SPACING.md,
+    marginBottom: SPACING.xs,
   },
   name: {
     color: COLORS.text,
@@ -183,9 +183,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   imageContainer: {
-    width: 180,
-    height: 180,
-    marginBottom: SPACING.md,
+    width: 140,
+    height: 140,
+    marginBottom: SPACING.xs,
     position: 'relative',
   },
   image: {
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     gap: SPACING.lg,
-    marginTop: SPACING.sm,
+    marginTop: SPACING.xs,
   },
   statText: {
     color: COLORS.textDim,
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     gap: SPACING.xs,
-    marginTop: SPACING.sm,
+    marginTop: SPACING.xs,
   },
   effectBadge: {
     paddingHorizontal: SPACING.sm,

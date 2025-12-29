@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { router } from 'expo-router';
@@ -79,10 +79,8 @@ export default function BattleScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.content}
-      >
+      {/* メインコンテンツ */}
+      <View style={styles.mainContent}>
         {/* 階層情報 */}
         <View style={styles.floorInfo}>
           <Text style={styles.floorText}>
@@ -98,14 +96,16 @@ export default function BattleScreen() {
 
         {/* プレイヤーステータス */}
         <PlayerStatus player={battlePlayer} />
+      </View>
 
-        {/* 行動ボタン */}
+      {/* 行動ボタン（画面下部に固定） */}
+      <View style={styles.actionContainer}>
         <ActionButtons
           player={battlePlayer}
           disabled={state.phase !== 'playerTurn'}
           onAction={playerAction}
         />
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
@@ -115,20 +115,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.background,
   },
-  scrollView: {
+  mainContent: {
     flex: 1,
+    padding: SPACING.sm,
+    gap: SPACING.sm,
   },
-  content: {
-    padding: SPACING.md,
-    gap: SPACING.md,
+  actionContainer: {
+    padding: SPACING.sm,
+    paddingBottom: SPACING.md,
   },
   floorInfo: {
     alignItems: 'center',
-    marginBottom: SPACING.sm,
   },
   floorText: {
     color: COLORS.text,
-    fontSize: FONT_SIZES.lg,
+    fontSize: FONT_SIZES.md,
     fontWeight: 'bold',
   },
 });

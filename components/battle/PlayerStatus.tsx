@@ -39,11 +39,12 @@ export function PlayerStatus({ player }: PlayerStatusProps) {
         </View>
       </View>
 
-      {player.traits.length > 0 && (
-        <View style={styles.traits}>
-          <Text style={styles.traitsLabel}>特性</Text>
-          <View style={styles.traitsList}>
-            {player.traits.map((trait) => {
+      {/* 特性欄（常に固定高さで表示） */}
+      <View style={styles.traits}>
+        <Text style={styles.traitsLabel}>特性</Text>
+        <View style={styles.traitsList}>
+          {player.traits.length > 0 ? (
+            player.traits.map((trait) => {
               const definition = getTraitById(trait.id);
               if (!definition) return null;
               return (
@@ -54,10 +55,12 @@ export function PlayerStatus({ player }: PlayerStatusProps) {
                   </Text>
                 </View>
               );
-            })}
-          </View>
+            })
+          ) : (
+            <Text style={styles.noTraits}>なし</Text>
+          )}
         </View>
-      )}
+      </View>
 
       {player.statusEffects.length > 0 && (
         <View style={styles.effects}>
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.card,
     borderRadius: BORDER_RADIUS.lg,
-    padding: SPACING.md,
+    padding: SPACING.sm,
     borderWidth: 1,
     borderColor: COLORS.cardBorder,
   },
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: SPACING.sm,
+    marginBottom: SPACING.xs,
   },
   name: {
     color: COLORS.text,
@@ -114,7 +117,7 @@ const styles = StyleSheet.create({
   expContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: SPACING.sm,
+    marginTop: SPACING.xs,
   },
   expLabel: {
     color: COLORS.exp,
@@ -136,7 +139,7 @@ const styles = StyleSheet.create({
   },
   stats: {
     flexDirection: 'row',
-    marginTop: SPACING.md,
+    marginTop: SPACING.xs,
     gap: SPACING.lg,
   },
   statItem: {
@@ -154,32 +157,37 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   traits: {
-    marginTop: SPACING.md,
+    marginTop: SPACING.xs,
+    minHeight: 44,
   },
   traitsLabel: {
     color: COLORS.textDim,
     fontSize: FONT_SIZES.xs,
-    marginBottom: SPACING.xs,
+    marginBottom: 2,
   },
   traitsList: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: SPACING.xs,
+    gap: 4,
   },
   traitBadge: {
     backgroundColor: COLORS.secondary,
-    paddingHorizontal: SPACING.sm,
-    paddingVertical: SPACING.xs,
+    paddingHorizontal: SPACING.xs,
+    paddingVertical: 2,
     borderRadius: BORDER_RADIUS.sm,
   },
   traitName: {
     color: COLORS.text,
     fontSize: FONT_SIZES.xs,
   },
+  noTraits: {
+    color: COLORS.textDark,
+    fontSize: FONT_SIZES.xs,
+  },
   effects: {
     flexDirection: 'row',
     gap: SPACING.xs,
-    marginTop: SPACING.sm,
+    marginTop: SPACING.xs,
   },
   effectBadge: {
     paddingHorizontal: SPACING.sm,
@@ -199,6 +207,6 @@ const styles = StyleSheet.create({
   cooldown: {
     color: COLORS.textDim,
     fontSize: FONT_SIZES.xs,
-    marginTop: SPACING.sm,
+    marginTop: SPACING.xs,
   },
 });

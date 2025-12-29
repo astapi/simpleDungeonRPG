@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.backgroundDark,
     borderRadius: BORDER_RADIUS.md,
-    height: 120,
+    height: 80,
     borderWidth: 1,
     borderColor: COLORS.cardBorder,
   },

@@ -31,7 +31,7 @@
     {
       "id": "poison_blade",
       "name": "毒刃",
-      "description": "攻撃時、毒を付与（ターン経過で2%→4%→6%→8%→10%の最大HPダメージ）",
+      "description": "攻撃時、毒を付与",
       "maxStack": 1,
       "category": "状態異常"
     },
