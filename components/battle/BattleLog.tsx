@@ -56,9 +56,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.backgroundDark,
     borderRadius: BORDER_RADIUS.md,
-    height: 120,
-    borderWidth: 1,
-    borderColor: COLORS.cardBorder,
+    height: 200,
+    borderWidth: 4,
+    borderColor: '#ffffff',
   },
   scrollView: {
     flex: 1,

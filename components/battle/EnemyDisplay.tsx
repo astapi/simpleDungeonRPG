@@ -8,33 +8,75 @@ interface EnemyDisplayProps {
   enemy: BattleEnemy;
 }
 
-// 敵画像のマッピング
-// assets/images/enemies/ に画像を配置することで表示される
-// 画像がない場合はプレースホルダーを表示
+// 敵画像のマッピング（静的インポートが必要）
 const enemyImages: Record<string, any> = {
-  // 画像が追加されたらここにマッピング
-  // 例: slime: require('@/assets/images/enemies/slime.png'),
+  '01_slime.png': require('@/assets/images/enemies/01_slime.png'),
+  '02_goblin.png': require('@/assets/images/enemies/02_goblin.png'),
+  '03_wolf.png': require('@/assets/images/enemies/03_wolf.png'),
+  '04_mushroom.png': require('@/assets/images/enemies/04_mushroom.png'),
+  '05_orc.png': require('@/assets/images/enemies/05_orc.png'),
+  '06_trent.png': require('@/assets/images/enemies/06_trent.png'),
+  '07_bandit.png': require('@/assets/images/enemies/07_bandit.png'),
+  '08_ghost.png': require('@/assets/images/enemies/08_ghost.png'),
+  '09_yeti.png': require('@/assets/images/enemies/09_yeti.png'),
+  '10_troll.png': require('@/assets/images/enemies/10_troll.png'),
+  '11_golem.png': require('@/assets/images/enemies/11_golem.png'),
+  '12_redslime.png': require('@/assets/images/enemies/12_redslime.png'),
+  '13_redgoblin.png': require('@/assets/images/enemies/13_redgoblin.png'),
+  '14_poisonMushroom.png': require('@/assets/images/enemies/14_poisonMushroom.png'),
+  '15_reddoragon.png': require('@/assets/images/enemies/15_reddoragon.png'),
+  '16_deamon.png': require('@/assets/images/enemies/16_deamon.png'),
+  '17_goblin_load.png': require('@/assets/images/enemies/17_goblin_load.png'),
+  '18_bandit_leader.png': require('@/assets/images/enemies/18_bandit_leader.png'),
+  '19_goblin_captain.png': require('@/assets/images/enemies/19_goblin_captain.png'),
+  '20_orc_captain.png': require('@/assets/images/enemies/20_orc_captain.png'),
+  '21_ice_armored_yeti.png': require('@/assets/images/enemies/21_ice_armored_yeti.png'),
+  '22_yeti_load.png': require('@/assets/images/enemies/22_yeti_load.png'),
+  '23_orc_load.png': require('@/assets/images/enemies/23_orc_load.png'),
+  '24_golem_knight.png': require('@/assets/images/enemies/24_golem_knight.png'),
+  '25_dark_archmage.png': require('@/assets/images/enemies/25_dark_archmage.png'),
+  '26_black_knight.png': require('@/assets/images/enemies/26_black_knight.png'),
+  '27_fallen_knight.png': require('@/assets/images/enemies/27_fallen_knight.png'),
+  '28_daemon_knight.png': require('@/assets/images/enemies/28_daemon_knight.png'),
+  '29_verdoras.png': require('@/assets/images/enemies/29_verdoras.png'),
 };
 
-// 敵ごとのプレースホルダー色
+// 敵ごとのプレースホルダー色（画像がない場合のフォールバック）
 const enemyColors: Record<string, string> = {
   slime: '#4ade80',
+  redslime: '#ef4444',
   goblin: '#22c55e',
-  bat: '#6b7280',
-  rat: '#a1a1aa',
-  orc: '#84cc16',
-  skeleton: '#e5e5e5',
+  redgoblin: '#dc2626',
   wolf: '#71717a',
+  mushroom: '#a1a1aa',
+  orc: '#84cc16',
+  trent: '#166534',
+  bandit: '#78716c',
   ghost: '#a855f7',
+  yeti: '#e5e5e5',
+  poison_mushroom: '#7c3aed',
+  goblin_captain: '#15803d',
+  bandit_leader: '#57534e',
   troll: '#65a30d',
-  dark_knight: '#1f2937',
-  demon: '#dc2626',
   golem: '#78716c',
-  dragon: '#f59e0b',
+  demon: '#dc2626',
+  goblin_lord: '#14532d',
+  orc_captain: '#4d7c0f',
+  ice_yeti: '#0ea5e9',
+  yeti_lord: '#94a3b8',
+  orc_lord: '#3f6212',
+  golem_knight: '#44403c',
+  dark_archmage: '#7c2d12',
+  black_knight: '#1f2937',
+  fallen_knight: '#374151',
+  daemon_knight: '#991b1b',
+  red_dragon: '#f59e0b',
+  verdoras: '#f59e0b',
 };
 
 export function EnemyDisplay({ enemy }: EnemyDisplayProps) {
-  const hasImage = enemyImages[enemy.id];
+  // enemy.image フィールドから画像を取得
+  const imageSource = enemy.image ? enemyImages[enemy.image] : null;
   const placeholderColor = enemyColors[enemy.id] || COLORS.secondary;
 
   return (
@@ -49,9 +91,9 @@ export function EnemyDisplay({ enemy }: EnemyDisplayProps) {
       </View>
 
       <View style={styles.imageContainer}>
-        {hasImage ? (
+        {imageSource ? (
           <Image
-            source={enemyImages[enemy.id]}
+            source={imageSource}
             style={styles.image}
             contentFit="contain"
           />
@@ -114,15 +156,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.card,
     borderRadius: BORDER_RADIUS.lg,
-    padding: SPACING.md,
-    borderWidth: 1,
-    borderColor: COLORS.cardBorder,
+    padding: SPACING.sm,
+    borderWidth: 4,
+    borderColor: '#ffffff',
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.sm,
-    marginBottom: SPACING.md,
+    marginBottom: SPACING.xs,
   },
   name: {
     color: COLORS.text,
@@ -141,9 +183,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   imageContainer: {
-    width: 150,
-    height: 150,
-    marginBottom: SPACING.md,
+    width: 140,
+    height: 140,
+    marginBottom: SPACING.xs,
     position: 'relative',
   },
   image: {
@@ -185,17 +227,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     gap: SPACING.lg,
-    marginTop: SPACING.sm,
+    marginTop: SPACING.xs,
   },
   statText: {
     color: COLORS.textDim,
-    fontSize: FONT_SIZES.sm,
+    fontSize: FONT_SIZES.md,
   },
   effects: {
     flexDirection: 'row',
     justifyContent: 'center',
     gap: SPACING.xs,
-    marginTop: SPACING.sm,
+    marginTop: SPACING.xs,
   },
   effectBadge: {
     paddingHorizontal: SPACING.sm,

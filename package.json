@@ -12,7 +12,11 @@
     "lint": "expo lint",
     "draft": "npx eas-cli@latest workflow:run create-draft.yml",
     "development-builds": "npx eas-cli@latest workflow:run create-development-builds.yml",
-    "deploy": "npx eas-cli@latest workflow:run deploy-to-production.yml"
+    "deploy": "npx eas-cli@latest workflow:run deploy-to-production.yml",
+    "simulate": "tsx scripts/simulate.ts",
+    "simulate:compare": "tsx scripts/simulate.ts compare",
+    "simulate:balance": "tsx scripts/simulate.ts balance",
+    "compress-png": "tsx scripts/compress-png.ts"
   },
   "dependencies": {
     "@expo/metro-runtime": "~6.1.2",
@@ -45,9 +49,14 @@
     "zustand": "^5.0.9"
   },
   "devDependencies": {
+    "@types/jsdom": "^27.0.0",
     "@types/react": "~19.1.0",
+    "@types/sharp": "^0.31.1",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
+    "jsdom": "^27.4.0",
+    "sharp": "^0.34.5",
+    "tsx": "^4.21.0",
     "typescript": "~5.9.2"
   }
 }

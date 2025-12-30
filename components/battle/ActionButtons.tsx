@@ -69,28 +69,24 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    paddingVertical: SPACING.md,
-    paddingHorizontal: SPACING.sm,
+    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.xs,
     borderRadius: BORDER_RADIUS.md,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: COLORS.card,
+    borderWidth: 4,
+    borderColor: '#ffffff',
   },
-  attackButton: {
-    backgroundColor: COLORS.buttonPrimary,
-  },
-  guardButton: {
-    backgroundColor: COLORS.accent,
-  },
-  skillButton: {
-    backgroundColor: COLORS.buttonSecondary,
-  },
+  attackButton: {},
+  guardButton: {},
+  skillButton: {},
   buttonPressed: {
     opacity: 0.8,
     transform: [{ scale: 0.98 }],
   },
   buttonDisabled: {
-    backgroundColor: COLORS.buttonDisabled,
-    opacity: 0.6,
+    opacity: 0.5,
   },
   buttonText: {
     color: COLORS.text,

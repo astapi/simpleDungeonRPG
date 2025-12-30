@@ -1,0 +1,813 @@
+{
+  "traits": [
+    {
+      "id": "double_strike",
+      "name": "連撃",
+      "description": "30%の確率で追撃（スタックごとに+10%）",
+      "maxStack": 3,
+      "category": "攻撃"
+    },
+    {
+      "id": "crit_up",
+      "name": "会心の一撃",
+      "description": "クリティカル率+10%（スタック可）",
+      "maxStack": 3,
+      "category": "攻撃"
+    },
+    {
+      "id": "armor_break",
+      "name": "破甲",
+      "description": "攻撃時、敵のDEF-1（最大-5）",
+      "maxStack": 3,
+      "category": "攻撃"
+    },
+    {
+      "id": "power_up",
+      "name": "力の祝福",
+      "description": "最終ダメージ+5（スタック可）",
+      "maxStack": 3,
+      "category": "攻撃"
+    },
+    {
+      "id": "poison_blade",
+      "name": "毒刃",
+      "description": "攻撃時、毒を付与",
+      "maxStack": 1,
+      "category": "状態異常"
+    },
+    {
+      "id": "burn_strike",
+      "name": "炎撃",
+      "description": "攻撃時、火傷を付与（スタック1:5%、2:8%、3:12%の最大HPダメージ）",
+      "maxStack": 3,
+      "category": "状態異常"
+    },
+    {
+      "id": "damage_cut",
+      "name": "堅牢",
+      "description": "被ダメージ10%カット（スタック可、最大40%）",
+      "maxStack": 4,
+      "category": "防御"
+    },
+    {
+      "id": "lifesteal",
+      "name": "吸収",
+      "description": "与ダメージの10%回復（スタックごとに+5%）",
+      "maxStack": 3,
+      "category": "回復"
+    },
+    {
+      "id": "regeneration",
+      "name": "自然治癒",
+      "description": "ターン終了時HP+4（スタック可）",
+      "maxStack": 4,
+      "category": "回復"
+    },
+    {
+      "id": "first_strike",
+      "name": "先制",
+      "description": "戦闘開始時、最初の攻撃が必ずクリティカル",
+      "maxStack": 1,
+      "category": "テンポ"
+    },
+    {
+      "id": "guard_drain",
+      "name": "吸収防御",
+      "description": "ガード時、受けたダメージの50%をHP吸収",
+      "maxStack": 1,
+      "category": "防御"
+    }
+  ],
+  "statRewards": [
+    {
+      "type": "statAtk",
+      "value": 3,
+      "label": "ATK+3",
+      "description": "攻撃力を3増加"
+    },
+    {
+      "type": "statDef",
+      "value": 3,
+      "label": "DEF+3",
+      "description": "防御力を3増加"
+    }
+  ],
+  "enemies": {
+    "tier1": [
+      {
+        "id": "slime",
+        "name": "スライム",
+        "image": "01_slime.png",
+        "hp": 27,
+        "atk": 8,
+        "def": 1,
+        "exp": 10,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 85
+          },
+          {
+            "type": "defend",
+            "weight": 15
+          }
+        ]
+      },
+      {
+        "id": "redslime",
+        "name": "レッドスライム",
+        "image": "12_redslime.png",
+        "hp": 33,
+        "atk": 11,
+        "def": 1,
+        "exp": 12,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 75
+          },
+          {
+            "type": "strongAttack",
+            "damage": 16,
+            "weight": 25
+          }
+        ]
+      },
+      {
+        "id": "goblin",
+        "name": "ゴブリン",
+        "image": "02_goblin.png",
+        "hp": 30,
+        "atk": 9,
+        "def": 2,
+        "exp": 12,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 70
+          },
+          {
+            "type": "strongAttack",
+            "damage": 13,
+            "weight": 20
+          },
+          {
+            "type": "defend",
+            "weight": 10
+          }
+        ]
+      },
+      {
+        "id": "redgoblin",
+        "name": "レッドゴブリン",
+        "image": "13_redgoblin.png",
+        "hp": 36,
+        "atk": 11,
+        "def": 2,
+        "exp": 15,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 60
+          },
+          {
+            "type": "strongAttack",
+            "damage": 19,
+            "weight": 30
+          },
+          {
+            "type": "buff",
+            "weight": 10
+          }
+        ]
+      },
+      {
+        "id": "wolf",
+        "name": "ウルフ",
+        "image": "03_wolf.png",
+        "hp": 24,
+        "atk": 11,
+        "def": 1,
+        "exp": 11,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 90
+          },
+          {
+            "type": "strongAttack",
+            "damage": 18,
+            "weight": 10
+          }
+        ]
+      },
+      {
+        "id": "mushroom",
+        "name": "マッシュルーム",
+        "image": "04_mushroom.png",
+        "hp": 30,
+        "atk": 6,
+        "def": 3,
+        "exp": 10,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 70
+          },
+          {
+            "type": "debuff",
+            "effect": "poison",
+            "weight": 30
+          }
+        ]
+      }
+    ],
+    "tier2": [
+      {
+        "id": "orc",
+        "name": "オーク",
+        "image": "05_orc.png",
+        "hp": 60,
+        "atk": 18,
+        "def": 4,
+        "exp": 25,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 60
+          },
+          {
+            "type": "strongAttack",
+            "damage": 24,
+            "weight": 25
+          },
+          {
+            "type": "buff",
+            "weight": 15
+          }
+        ]
+      },
+      {
+        "id": "trent",
+        "name": "トレント",
+        "image": "06_trent.png",
+        "hp": 76,
+        "atk": 13,
+        "def": 6,
+        "exp": 28,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 55
+          },
+          {
+            "type": "defend",
+            "weight": 30
+          },
+          {
+            "type": "buff",
+            "weight": 15
+          }
+        ]
+      },
+      {
+        "id": "bandit",
+        "name": "バンディット",
+        "image": "07_bandit.png",
+        "hp": 53,
+        "atk": 19,
+        "def": 3,
+        "exp": 24,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 65
+          },
+          {
+            "type": "strongAttack",
+            "damage": 27,
+            "weight": 25
+          },
+          {
+            "type": "defend",
+            "weight": 10
+          }
+        ]
+      },
+      {
+        "id": "ghost",
+        "name": "ゴースト",
+        "image": "08_ghost.png",
+        "hp": 46,
+        "atk": 16,
+        "def": 2,
+        "exp": 22,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 55
+          },
+          {
+            "type": "debuff",
+            "effect": "burn",
+            "weight": 35
+          },
+          {
+            "type": "defend",
+            "weight": 10
+          }
+        ]
+      },
+      {
+        "id": "yeti",
+        "name": "イエティ",
+        "image": "09_yeti.png",
+        "hp": 68,
+        "atk": 16,
+        "def": 5,
+        "exp": 26,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 65
+          },
+          {
+            "type": "strongAttack",
+            "damage": 23,
+            "weight": 20
+          },
+          {
+            "type": "defend",
+            "weight": 15
+          }
+        ]
+      },
+      {
+        "id": "poison_mushroom",
+        "name": "ポイズンマッシュルーム",
+        "image": "14_poisonMushroom.png",
+        "hp": 49,
+        "atk": 11,
+        "def": 4,
+        "exp": 23,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 40
+          },
+          {
+            "type": "debuff",
+            "effect": "poison",
+            "weight": 50
+          },
+          {
+            "type": "defend",
+            "weight": 10
+          }
+        ]
+      },
+      {
+        "id": "goblin_captain",
+        "name": "ゴブリンキャプテン",
+        "image": "19_goblin_captain.png",
+        "hp": 57,
+        "atk": 18,
+        "def": 4,
+        "exp": 27,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 55
+          },
+          {
+            "type": "strongAttack",
+            "damage": 24,
+            "weight": 25
+          },
+          {
+            "type": "buff",
+            "weight": 20
+          }
+        ]
+      },
+      {
+        "id": "bandit_leader",
+        "name": "バンディットリーダー",
+        "image": "18_bandit_leader.png",
+        "hp": 63,
+        "atk": 20,
+        "def": 4,
+        "exp": 30,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 50
+          },
+          {
+            "type": "strongAttack",
+            "damage": 30,
+            "weight": 30
+          },
+          {
+            "type": "buff",
+            "weight": 20
+          }
+        ]
+      }
+    ],
+    "tier3": [
+      {
+        "id": "troll",
+        "name": "トロール",
+        "image": "10_troll.png",
+        "hp": 98,
+        "atk": 21,
+        "def": 6,
+        "exp": 45,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 50
+          },
+          {
+            "type": "strongAttack",
+            "damage": 33,
+            "weight": 30
+          },
+          {
+            "type": "buff",
+            "weight": 20
+          }
+        ]
+      },
+      {
+        "id": "golem",
+        "name": "ゴーレム",
+        "image": "11_golem.png",
+        "hp": 120,
+        "atk": 19,
+        "def": 10,
+        "exp": 48,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 55
+          },
+          {
+            "type": "strongAttack",
+            "damage": 30,
+            "weight": 25
+          },
+          {
+            "type": "defend",
+            "weight": 20
+          }
+        ]
+      },
+      {
+        "id": "demon",
+        "name": "デーモン",
+        "image": "16_deamon.png",
+        "hp": 83,
+        "atk": 24,
+        "def": 5,
+        "exp": 50,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 45
+          },
+          {
+            "type": "strongAttack",
+            "damage": 38,
+            "weight": 25
+          },
+          {
+            "type": "debuff",
+            "effect": "burn",
+            "weight": 30
+          }
+        ]
+      },
+      {
+        "id": "goblin_lord",
+        "name": "ゴブリンロード",
+        "image": "17_goblin_load.png",
+        "hp": 90,
+        "atk": 23,
+        "def": 6,
+        "exp": 52,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 45
+          },
+          {
+            "type": "strongAttack",
+            "damage": 34,
+            "weight": 30
+          },
+          {
+            "type": "buff",
+            "weight": 25
+          }
+        ]
+      },
+      {
+        "id": "orc_captain",
+        "name": "オークキャプテン",
+        "image": "20_orc_captain.png",
+        "hp": 106,
+        "atk": 21,
+        "def": 7,
+        "exp": 50,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 50
+          },
+          {
+            "type": "strongAttack",
+            "damage": 33,
+            "weight": 30
+          },
+          {
+            "type": "buff",
+            "weight": 20
+          }
+        ]
+      },
+      {
+        "id": "ice_yeti",
+        "name": "アイスアーマードイエティ",
+        "image": "21_ice_armored_yeti.png",
+        "hp": 113,
+        "atk": 20,
+        "def": 9,
+        "exp": 52,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 50
+          },
+          {
+            "type": "strongAttack",
+            "damage": 30,
+            "weight": 25
+          },
+          {
+            "type": "defend",
+            "weight": 25
+          }
+        ]
+      },
+      {
+        "id": "yeti_lord",
+        "name": "イエティロード",
+        "image": "22_yeti_load.png",
+        "hp": 128,
+        "atk": 21,
+        "def": 8,
+        "exp": 55,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 45
+          },
+          {
+            "type": "strongAttack",
+            "damage": 36,
+            "weight": 30
+          },
+          {
+            "type": "buff",
+            "weight": 25
+          }
+        ]
+      },
+      {
+        "id": "orc_lord",
+        "name": "オークロード",
+        "image": "23_orc_load.png",
+        "hp": 136,
+        "atk": 24,
+        "def": 8,
+        "exp": 58,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 40
+          },
+          {
+            "type": "strongAttack",
+            "damage": 39,
+            "weight": 35
+          },
+          {
+            "type": "buff",
+            "weight": 25
+          }
+        ]
+      },
+      {
+        "id": "golem_knight",
+        "name": "ゴーレムナイト",
+        "image": "24_golem_knight.png",
+        "hp": 143,
+        "atk": 23,
+        "def": 12,
+        "exp": 60,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 45
+          },
+          {
+            "type": "strongAttack",
+            "damage": 36,
+            "weight": 30
+          },
+          {
+            "type": "defend",
+            "weight": 25
+          }
+        ]
+      },
+      {
+        "id": "dark_archmage",
+        "name": "ダークアークメイジ",
+        "image": "25_dark_archmage.png",
+        "hp": 76,
+        "atk": 30,
+        "def": 4,
+        "exp": 55,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 35
+          },
+          {
+            "type": "strongAttack",
+            "damage": 46,
+            "weight": 30
+          },
+          {
+            "type": "debuff",
+            "effect": "burn",
+            "weight": 35
+          }
+        ]
+      },
+      {
+        "id": "black_knight",
+        "name": "ブラックナイト",
+        "image": "26_black_knight.png",
+        "hp": 106,
+        "atk": 27,
+        "def": 10,
+        "exp": 58,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 45
+          },
+          {
+            "type": "strongAttack",
+            "damage": 41,
+            "weight": 35
+          },
+          {
+            "type": "defend",
+            "weight": 20
+          }
+        ]
+      },
+      {
+        "id": "fallen_knight",
+        "name": "フォールンナイト",
+        "image": "27_fallen_knight.png",
+        "hp": 113,
+        "atk": 27,
+        "def": 9,
+        "exp": 56,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 50
+          },
+          {
+            "type": "strongAttack",
+            "damage": 39,
+            "weight": 30
+          },
+          {
+            "type": "debuff",
+            "effect": "poison",
+            "weight": 20
+          }
+        ]
+      },
+      {
+        "id": "daemon_knight",
+        "name": "デーモンナイト",
+        "image": "28_daemon_knight.png",
+        "hp": 120,
+        "atk": 29,
+        "def": 8,
+        "exp": 62,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 40
+          },
+          {
+            "type": "strongAttack",
+            "damage": 46,
+            "weight": 30
+          },
+          {
+            "type": "debuff",
+            "effect": "burn",
+            "weight": 30
+          }
+        ]
+      },
+      {
+        "id": "red_dragon",
+        "name": "レッドドラゴン",
+        "image": "15_reddoragon.png",
+        "hp": 150,
+        "atk": 30,
+        "def": 10,
+        "exp": 70,
+        "actions": [
+          {
+            "type": "attack",
+            "weight": 35
+          },
+          {
+            "type": "strongAttack",
+            "damage": 49,
+            "weight": 35
+          },
+          {
+            "type": "debuff",
+            "effect": "burn",
+            "weight": 30
+          }
+        ]
+      }
+    ],
+    "boss": {
+      "id": "verdoras",
+      "name": "古竜ヴェルドラス",
+      "image": "29_verdoras.png",
+      "hp": 300,
+      "atk": 38,
+      "def": 12,
+      "exp": 500,
+      "actions": [
+        {
+          "type": "attack",
+          "weight": 30
+        },
+        {
+          "type": "strongAttack",
+          "damage": 60,
+          "weight": 30
+        },
+        {
+          "type": "debuff",
+          "effect": "burn",
+          "weight": 25
+        },
+        {
+          "type": "buff",
+          "weight": 15
+        }
+      ]
+    }
+  },
+  "config": {
+    "maxFloors": 5,
+    "battlesPerFloor": 4,
+    "maxTraits": 6,
+    "maxTraitStack": 3,
+    "skillCooldown": 3,
+    "skillMultiplier": 1.8,
+    "guardReduction": 0.5,
+    "guardFlatReduction": 2,
+    "critChance": 0.1,
+    "critMultiplier": 1.5,
+    "healPercent": 0.3,
+    "expPerLevel": 100
+  },
+  "initialPlayer": {
+    "hp": 50,
+    "maxHp": 50,
+    "atk": 10,
+    "def": 5,
+    "lv": 1,
+    "exp": 0
+  }
+}
