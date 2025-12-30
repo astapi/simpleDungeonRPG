@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   label: {
     color: COLORS.textDim,
-    fontSize: FONT_SIZES.sm,
+    fontSize: FONT_SIZES.md,
     marginBottom: SPACING.xs,
   },
   barBackground: {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   numbers: {
     color: COLORS.text,
-    fontSize: FONT_SIZES.sm,
+    fontSize: FONT_SIZES.md,
     fontWeight: 'bold',
     textAlign: 'center',
     textShadowColor: 'rgba(0,0,0,0.8)',

@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 1,
     padding: SPACING.sm,
-    gap: SPACING.sm,
+    gap: SPACING.sm + 2,
   },
   actionContainer: {
     padding: SPACING.sm,

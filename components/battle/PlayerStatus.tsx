@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native';
-import { Player, GAME_CONSTANTS } from '@/types/game';
+import { Player } from '@/types/game';
 import { getTraitById } from '@/data/traits';
 import { HPBar } from '@/components/ui/HPBar';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '@/constants/theme';
@@ -9,24 +9,11 @@ interface PlayerStatusProps {
 }
 
 export function PlayerStatus({ player }: PlayerStatusProps) {
-  const expForNextLevel = player.lv * GAME_CONSTANTS.EXP_PER_LEVEL;
-  const expPercentage = (player.exp / expForNextLevel) * 100;
-
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.name}>勇者</Text>
-        <Text style={styles.level}>LV.{player.lv}</Text>
-      </View>
+      <Text style={styles.level}>LV.{player.lv}</Text>
 
       <HPBar current={player.hp} max={player.maxHp} label="HP" />
-
-      <View style={styles.expContainer}>
-        <Text style={styles.expLabel}>EXP</Text>
-        <View style={styles.expBar}>
-          <View style={[styles.expFill, { width: `${expPercentage}%` }]} />
-        </View>
-      </View>
 
       <View style={styles.stats}>
         <View style={styles.statItem}>
@@ -95,47 +82,14 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.card,
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.sm,
-    borderWidth: 1,
-    borderColor: COLORS.cardBorder,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: SPACING.xs,
-  },
-  name: {
-    color: COLORS.text,
-    fontSize: FONT_SIZES.lg,
-    fontWeight: 'bold',
+    borderWidth: 4,
+    borderColor: '#ffffff',
   },
   level: {
     color: COLORS.exp,
-    fontSize: FONT_SIZES.md,
+    fontSize: FONT_SIZES.lg,
     fontWeight: 'bold',
-  },
-  expContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: SPACING.xs,
-  },
-  expLabel: {
-    color: COLORS.exp,
-    fontSize: FONT_SIZES.xs,
-    marginRight: SPACING.sm,
-    width: 28,
-  },
-  expBar: {
-    flex: 1,
-    height: 8,
-    backgroundColor: COLORS.backgroundDark,
-    borderRadius: BORDER_RADIUS.sm,
-    overflow: 'hidden',
-  },
-  expFill: {
-    height: '100%',
-    backgroundColor: COLORS.exp,
-    borderRadius: BORDER_RADIUS.sm,
+    marginBottom: SPACING.xs,
   },
   stats: {
     flexDirection: 'row',
@@ -148,12 +102,12 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     color: COLORS.textDim,
-    fontSize: FONT_SIZES.sm,
+    fontSize: FONT_SIZES.md,
     marginRight: SPACING.xs,
   },
   statValue: {
     color: COLORS.text,
-    fontSize: FONT_SIZES.md,
+    fontSize: FONT_SIZES.lg,
     fontWeight: 'bold',
   },
   traits: {

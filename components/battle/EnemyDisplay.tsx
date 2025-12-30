@@ -157,8 +157,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.card,
     borderRadius: BORDER_RADIUS.lg,
     padding: SPACING.sm,
-    borderWidth: 1,
-    borderColor: COLORS.cardBorder,
+    borderWidth: 4,
+    borderColor: '#ffffff',
   },
   header: {
     flexDirection: 'row',
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   },
   statText: {
     color: COLORS.textDim,
-    fontSize: FONT_SIZES.sm,
+    fontSize: FONT_SIZES.md,
   },
   effects: {
     flexDirection: 'row',
