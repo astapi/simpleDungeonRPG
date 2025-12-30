@@ -26,7 +26,7 @@ export default function TitleScreen() {
       <SafeAreaView style={styles.container}>
         <StatusBar style="light" />
         <View style={styles.content}>
-          <Text style={styles.titleText}>シンプルダンジョンRPG</Text>
+          <Text style={styles.titleText}>さくさくダンジョン</Text>
           {/* <Text style={styles.subtitleText}>RPG</Text> */}
 
           <View style={styles.infoContainer}>
