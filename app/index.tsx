@@ -1,11 +1,10 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
-import { router } from 'expo-router';
-import { Image } from 'expo-image';
+import { BORDER_RADIUS, COLORS, FONT_SIZES, SPACING } from '@/constants/theme';
 import { useGameStore } from '@/stores/gameStore';
-import { GAME_CONSTANTS } from '@/types/game';
-import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '@/constants/theme';
+import { Image } from 'expo-image';
+import { router } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const bgImage = require('@/assets/images/bg.png');
 
@@ -27,15 +26,15 @@ export default function TitleScreen() {
       <SafeAreaView style={styles.container}>
         <StatusBar style="light" />
         <View style={styles.content}>
-          <Text style={styles.titleText}>ローグライト</Text>
-          <Text style={styles.subtitleText}>RPG</Text>
+          <Text style={styles.titleText}>シンプルダンジョンRPG</Text>
+          {/* <Text style={styles.subtitleText}>RPG</Text> */}
 
           <View style={styles.infoContainer}>
-            <Text style={styles.infoText}>全{GAME_CONSTANTS.MAX_FLOORS}階層</Text>
+            {/* <Text style={styles.infoText}>全{GAME_CONSTANTS.MAX_FLOORS}階層</Text>
             <Text style={styles.infoText}>
               {GAME_CONSTANTS.MAX_FLOORS * GAME_CONSTANTS.BATTLES_PER_FLOOR + 1}戦闘
-            </Text>
-            <Text style={styles.infoText}>ラスボスを倒せ!</Text>
+            </Text> */}
+            {/* <Text style={styles.infoText}>ラスボスを倒せ!</Text> */}
           </View>
 
           <Pressable
@@ -45,7 +44,7 @@ export default function TitleScreen() {
             ]}
             onPress={handleStart}
           >
-            <Text style={styles.startButtonText}>ゲームスタート</Text>
+            <Text style={styles.startButtonText}>ダンジョンに潜る</Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     color: COLORS.primary,
-    fontSize: 48,
+    fontSize: 32,
     fontWeight: 'bold',
     textShadowColor: 'rgba(233, 69, 96, 0.5)',
     textShadowOffset: { width: 0, height: 4 },
@@ -113,7 +112,7 @@ const styles = StyleSheet.create({
   },
   startButtonText: {
     color: COLORS.text,
-    fontSize: FONT_SIZES.xl,
+    fontSize: FONT_SIZES.lg,
     fontWeight: 'bold',
   },
 });

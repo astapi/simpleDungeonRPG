@@ -1,10 +1,10 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
-import { router } from 'expo-router';
+import { BORDER_RADIUS, COLORS, FONT_SIZES, SPACING } from '@/constants/theme';
 import { useGameStore } from '@/stores/gameStore';
 import { GAME_CONSTANTS } from '@/types/game';
-import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '@/constants/theme';
+import { router } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ResultScreen() {
   const currentFloor = useGameStore((state) => state.currentFloor);
@@ -31,7 +31,7 @@ export default function ResultScreen() {
             gameResult === 'victory' ? styles.victoryText : styles.defeatText,
           ]}
         >
-          {gameResult === 'victory' ? 'VICTORY!' : 'DEFEAT...'}
+          {gameResult === 'victory' ? '踏破した!' : '死亡...'}
         </Text>
 
         <View style={styles.stats}>
